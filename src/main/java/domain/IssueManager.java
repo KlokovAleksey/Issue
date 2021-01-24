@@ -37,10 +37,10 @@ public class IssueManager {
         return byAuthor;
     }
 
-    public List<Issue> findByAssignee(String assignee) {
+    public List<Issue> findByAssignee(Set<String> assignee) {
         List<Issue> byAssignee = new ArrayList<>();
         for (Issue issue : repository.getAll()) {
-            if (issue.getAuthor().equalsIgnoreCase(assignee))
+            if (issue.getAssignee().equals(assignee))
                 byAssignee.add(issue);
         }
         return byAssignee;
@@ -49,7 +49,7 @@ public class IssueManager {
     public List<Issue> findByLabel(String label) {
         List<Issue> byLabel = new ArrayList<>();
         for (Issue issue : repository.getAll()) {
-            if (issue.getAuthor().equalsIgnoreCase(label))
+            if (issue.getAuthor().equals(label))
                 byLabel.add(issue);
         }
         return byLabel;

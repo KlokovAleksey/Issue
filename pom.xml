@@ -7,11 +7,12 @@
     <groupId>ru.netology</groupId>
     <artifactId>Issue</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>RELEASE</version>
+            <version>1.18.12</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
