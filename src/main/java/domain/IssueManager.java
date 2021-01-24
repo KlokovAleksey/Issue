@@ -2,8 +2,10 @@ package domain;
 
 import repository.IssueRepository;
 
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 
@@ -62,7 +64,7 @@ public class IssueManager {
                 byOpen.add(issue);
             }
         }
-            return byOpen;
+        return byOpen;
     }
 
     public List<Issue> findClosedIssue() {

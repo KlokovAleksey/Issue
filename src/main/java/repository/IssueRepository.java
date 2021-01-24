@@ -33,7 +33,8 @@ public class IssueRepository {
     public void addAll(Collection<Issue> issues) {
         this.issues.addAll(issues);
     }
-    public void removeAll(Collection<Issue> issues){
+
+    public void removeAll(Collection<Issue> issues) {
         this.issues.removeAll(issues);
     }
 
