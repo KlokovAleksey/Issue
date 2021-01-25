@@ -2,15 +2,11 @@ package domain;
 
 import repository.IssueRepository;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
-import java.util.function.Predicate;
-
+import java.util.*;
 
 public class IssueManager {
     private IssueRepository repository;
+
 
     public IssueManager(IssueRepository repository) {
         this.repository = repository;
@@ -18,16 +14,6 @@ public class IssueManager {
 
     public void add(Issue issue) {
         repository.add(issue);
-    }
-
-    public List<Issue> filterBy(Comparator<Issue> comparator, Predicate<Issue> predicate) {
-        List<Issue> filter = new ArrayList<>();
-        for (Issue issue : repository.getAll()) {
-            if (predicate.test(issue)) ;
-            filter.add(issue);
-        }
-        filter.sort(comparator);
-        return filter;
     }
 
     public List<Issue> findByAuthor(String author) {
@@ -39,10 +25,10 @@ public class IssueManager {
         return byAuthor;
     }
 
-    public List<Issue> findByAssignee(Set<String> assignee) {
+    public List<Issue> findByAssignee(String assignee) {
         List<Issue> byAssignee = new ArrayList<>();
         for (Issue issue : repository.getAll()) {
-            if (issue.getAssignee().equals(assignee))
+            if (issue.getAssignee().contains(assignee))
                 byAssignee.add(issue);
         }
         return byAssignee;
@@ -51,7 +37,7 @@ public class IssueManager {
     public List<Issue> findByLabel(String label) {
         List<Issue> byLabel = new ArrayList<>();
         for (Issue issue : repository.getAll()) {
-            if (issue.getAuthor().equals(label))
+            if (issue.getLabel().contains(label))
                 byLabel.add(issue);
         }
         return byLabel;
@@ -75,8 +61,8 @@ public class IssueManager {
             }
         }
         return byClosed;
-    }
 
+    }
 }
 
 

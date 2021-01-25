@@ -4,8 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import repository.IssueRepository;
 
+;
+import java.util.*;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,12 +16,12 @@ class IssueManagerTest {
     private IssueManager manager = new IssueManager(repository);
 
 
-    private Issue issue1 = new Issue(1, true, "Andrey", Set.of("bug"), Set.of("Nikolay"));
-    private Issue issue2 = new Issue(2, false, "Anna", Set.of("question"), Set.of("Sergey"));
-    private Issue issue3 = new Issue(3, true, "Sergey", Set.of("documentation"), Set.of("Andrey"));
-    private Issue issue4 = new Issue(4, true, "Anna", Set.of("bug,question"), Set.of("Nikolay"));
-    private Issue issue5 = new Issue(5, true, "Nikolay", Set.of("bug"), Set.of("Sergey"));
-    private Issue issue6 = new Issue(6, false, "Andrey", Set.of("bug"), Set.of("Anna"));
+    private Issue issue1 = new Issue(1, true, "Andrey",new HashSet(Collections.singleton("bug")),new HashSet(Collections.singleton("Nikolay")));
+    private Issue issue2 = new Issue(2, false, "Anna", new HashSet(Collections.singleton("question")), new HashSet(Collections.singleton("Sergey")));
+    private Issue issue3 = new Issue(3, true, "Sergey", new HashSet(Collections.singleton("documentation")), new HashSet(Collections.singleton("Andrey")));
+    private Issue issue4 = new Issue(4, true, "Anna",new HashSet(Collections.singleton("question")), new HashSet(Collections.singleton("Nikolay")));
+    private Issue issue5 = new Issue(5, true, "Nikolay", new HashSet(Collections.singleton("bug")), new HashSet(Collections.singleton("Sergey")));
+    private Issue issue6 = new Issue(6, false, "Andrey", new HashSet(Collections.singleton("bug")), new HashSet(Collections.singleton("Anna")));
 
 
     @BeforeEach
@@ -34,7 +35,7 @@ class IssueManagerTest {
     }
 
     @Test
-    public void shouldFilterByAuthor() {
+    public void shouldFindByAuthor() {
         List<Issue> actual = manager.findByAuthor("Andrey");
         List<Issue> expected = List.of(issue1, issue6);
         assertEquals(actual, expected);
@@ -61,4 +62,32 @@ class IssueManagerTest {
         assertEquals(actual, expected);
 
     }
+    @Test
+    public void shouldFindByAssignee() {
+        List<Issue> actual = manager.findByAssignee("Nikolay");
+        List<Issue> expected = List.of(issue1,issue4);
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    public void shouldFindByNotAssignee() {
+        List<Issue> actual = manager.findByAssignee("Jora");
+        List<Issue> expected = List.of();
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    public void shouldFindByLabel() {
+        List<Issue> actual = manager.findByLabel("Jora");
+        List<Issue> expected = List.of(issue1,issue5,issue6);
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    public void shouldFindByNotLabel() {
+        List<Issue> actual = manager.findByLabel("answer");
+        List<Issue> expected = List.of();
+        assertEquals(actual, expected);
+    }
+
 }

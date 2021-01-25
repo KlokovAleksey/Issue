@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import java.util.Set;
 
 
@@ -18,7 +19,6 @@ public class Issue implements Comparable<Issue> {
     private String author;
     private Set<String> label;
     private Set<String> assignee;
-
 
     @Override
     public int compareTo(Issue o) {
