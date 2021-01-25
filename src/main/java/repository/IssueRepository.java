@@ -13,10 +13,10 @@ public class IssueRepository {
         return issues;
     }
 
-    public Collection<Issue> getById(int id) {
+    public Issue getById(int id) {
         for (Issue issue : issues) {
             if (issue.getId() == id) {
-                return issues;
+                return issue;
             }
         }
         return null;
