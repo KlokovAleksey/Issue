@@ -77,7 +77,7 @@ class IssueManagerTest {
 
     @Test
     public void shouldFindByLabel() {
-        List<Issue> actual = manager.findByLabel("Jora");
+        List<Issue> actual = manager.findByLabel("bug");
         List<Issue> expected = List.of(issue1,issue5,issue6);
         assertEquals(actual, expected);
     }

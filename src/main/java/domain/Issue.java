@@ -12,17 +12,12 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 
-public class Issue implements Comparable<Issue> {
+public class Issue  {
 
     private int id;
     private boolean open;
     private String author;
     private Set<String> label;
     private Set<String> assignee;
-
-    @Override
-    public int compareTo(Issue o) {
-        return 0;
-    }
 
 }

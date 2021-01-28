@@ -3,6 +3,7 @@ package domain;
 import repository.IssueRepository;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 public class IssueManager {
     private IssueRepository repository;
@@ -31,6 +32,7 @@ public class IssueManager {
             if (issue.getAssignee().contains(assignee))
                 byAssignee.add(issue);
         }
+        ;
         return byAssignee;
     }
 

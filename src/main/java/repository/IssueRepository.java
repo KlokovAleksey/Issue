@@ -26,16 +26,18 @@ public class IssueRepository {
         return issues.add(issue);
     }
 
-    public void removeById(int id) {
+    public Collection<Issue> removeById(int id) {
         issues.removeIf(issue -> issue.getId() == id);
+        return issues;
     }
 
-    public void addAll(Collection<Issue> issues) {
-        this.issues.addAll(issues);
+
+    public boolean addAll(Collection<Issue> issues) {
+        return this.issues.addAll(issues);
     }
 
-    public void removeAll(Collection<Issue> issues) {
-        this.issues.removeAll(issues);
+    public boolean removeAll(Collection<Issue> issues) {
+        return this.issues.removeAll(issues);
     }
 
 }

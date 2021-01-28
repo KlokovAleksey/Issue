@@ -5,9 +5,13 @@ import domain.IssueManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.concurrent.Callable;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class IssueRepositoryTest {
@@ -46,5 +50,13 @@ class IssueRepositoryTest {
         Issue expected = issue3;
         assertEquals(actual, expected);
 
+    }
+
+    @Test
+    public void shouldRemoveById() {
+        repository.removeById(4);
+        Collection<Issue> actual = repository.getAll();
+        Collection<Issue> expected = Arrays.asList(issue1,issue2,issue3,issue5,issue6);
+        assertEquals(actual,expected);
     }
 }
